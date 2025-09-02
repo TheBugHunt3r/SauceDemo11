@@ -1,6 +1,8 @@
 package tests;
 
 import io.qameta.allure.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import plugins.retry.RetryAnalyzer;
@@ -9,6 +11,7 @@ import static org.testng.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
 
+    private static final Logger logger = LoggerFactory.getLogger(LoginTest.class);
 
     @Owner("Alisa")
     @Link("https://www.saucedemo.com/")
