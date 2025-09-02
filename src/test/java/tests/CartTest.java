@@ -20,7 +20,7 @@ public class CartTest extends BaseTest {
     @Test(testName = "Тест открытия страницы корзины", description = "Прверка открытия страницы корзины",
             retryAnalyzer = RetryAnalyzer.class)
     public void checkCartIsOpened() {
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         cartStep.isCartOpened();
     }
 
@@ -38,7 +38,7 @@ public class CartTest extends BaseTest {
     @Test(testName = "Тест кнопки удаления", description = "Проверка удаления выбранного товара",
             retryAnalyzer = RetryAnalyzer.class)
     public void checkItemIsRemoved() {
-        loginStep.auth("standard_user", "secret_sauce");
+        loginStep.auth(user, password);
         cartStep.isCartOpened();
         cartStep.checkRemoveButton();
     }

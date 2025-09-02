@@ -26,7 +26,7 @@ public class LoginTest extends BaseTest {
     @Test(testName = "Позитивный тест логина", description = "Проверка входа в аккаунт с валидными данными",
             retryAnalyzer = RetryAnalyzer.class)
     public void checkPositiveLogin() {
-        loginStep.auth("standard_user","secret_sauce");
+        loginStep.auth(user,password);
         loginStep.testWithPositiveCred();
     }
 

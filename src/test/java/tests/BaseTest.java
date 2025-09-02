@@ -34,6 +34,9 @@ public class BaseTest {
     protected CartStep cartStep;
     protected CheckoutStep checkoutStep;
 
+    String user = System.getProperty("user");
+    String password = System.getProperty("password");
+
     @Parameters({"browser"})
     @BeforeMethod
     public void setup(@Optional("chrome") String browser, ITestContext context) {
@@ -45,9 +48,11 @@ public class BaseTest {
             options.setExperimentalOption("prefs", chromePrefs);
             options.addArguments("--incognito", "--disable-notifications",
                     "--disable-popup-blocking", "--disable-infobars");
+            options.addArguments("--headless");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--headless");
             options.addArguments("--private");
             options.addPreference("dom.webnotifications.enabled", false);
             driver = new FirefoxDriver(options);
@@ -71,7 +76,8 @@ public class BaseTest {
     public void tearDown(ITestResult result) {
         if (ITestResult.FAILURE == result.getStatus()) {
             AllureUtils.takeScreenshot(driver);
+        }if (driver != null) {
+            driver.quit();
         }
-        driver.quit();
     }
 }
