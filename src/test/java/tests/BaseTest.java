@@ -34,6 +34,9 @@ public class BaseTest {
     protected CartStep cartStep;
     protected CheckoutStep checkoutStep;
 
+    String user = System.getProperty("user");
+    String password = System.getProperty("password");
+
     @Parameters({"browser"})
     @BeforeMethod
     public void setup(@Optional("chrome") String browser, ITestContext context) {
