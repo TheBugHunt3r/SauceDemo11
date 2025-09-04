@@ -2,9 +2,11 @@ name: SauceDemo CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "chains" ]
   pull_request:
     branches: [ "main" ]
+  schedule:
+    - cron: "0 10 * * 5"
 
 jobs:
   build:
@@ -16,7 +18,8 @@ jobs:
       PASSWORD: ${{secrets.SD_PASSWORD}}
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:

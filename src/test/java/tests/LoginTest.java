@@ -43,7 +43,7 @@ public class LoginTest extends BaseTest {
     @Test(testName = "Негативный тест логина", description = "Проверка входа пользователя с пустым паролем",
             retryAnalyzer = RetryAnalyzer.class)
     public void checkLoginWithEmptyPassword() {
-        loginStep.auth("standard_user","");
+        loginStep.auth(user,"");
         loginStep.testWithEmptyPassword();
     }
 
@@ -61,7 +61,7 @@ public class LoginTest extends BaseTest {
     @Test(testName = "Негативный тест логина", description = "Проверка входа пользователя с именем пользователя",
             retryAnalyzer = RetryAnalyzer.class)
     public void checkLoginWithEmptyUsername() {
-        loginStep.auth("","secret_sauce");
+        loginStep.auth("",password);
         loginStep.testWithEmptyUsername();
     }
 
