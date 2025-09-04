@@ -48,7 +48,9 @@ public class BaseTest {
             options.setExperimentalOption("prefs", chromePrefs);
             options.addArguments("--incognito", "--disable-notifications",
                     "--disable-popup-blocking", "--disable-infobars");
-            options.addArguments("--headless");
+            if (System.getProperty("headless", "true").equals("true")) {
+                options.addArguments("--headless");
+            }
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--disable-gpu");
