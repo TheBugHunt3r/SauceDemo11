@@ -21,9 +21,7 @@ public class ProductsPage extends BasePage {
 
     @FindBy(className = "title")
     private WebElement TITLE;
-    @FindBy(xpath = "//*[text()='%s']/ancestor::div[@class='inventory_item']" +
-            "//button[text()='Add to cart']")
-    private WebElement ADD_TO_CART_PATTERN;
+    private static final String ADD_TO_CART_PATTERN = "//div[text()='%s']/ancestor::div[@class='inventory_item']//button";
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -76,8 +74,11 @@ public class ProductsPage extends BasePage {
 
     @Step("Добавление товара с именем: '{product}' в корзину и нажатие на кнопку")
     public ProductsPage addToCart(String product) {
-        driver.findElement(By.xpath(String.format(product, ADD_TO_CART_PATTERN))).click();
         logger.info("Добавление товара в корзину и нажатие на кнопку");
+        String xpath = String.format(ADD_TO_CART_PATTERN, product);
+        WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+        addButton.click();
+        logger.info("Товар {} добавлен в корзину", product);
         AllureUtils.takeScreenshot(driver);
         return this;
     }

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,11 @@ public class CheckoutPage extends BasePage {
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
+        initElements();
+    }
+
+    private void initElements() {
+        PageFactory.initElements(driver, this);
     }
 
     public CheckoutPage open() {
@@ -34,6 +40,7 @@ public class CheckoutPage extends BasePage {
     }
 
     public ProductsPage enterInfo(String first_name, String last_name, String zip) {
+        initElements();
         log.info("Ввод данных оплаты");
         log.debug("Ввод firstname: {}", first_name);
         wait.until(ExpectedConditions.visibilityOf(FIRST_NAME));
